@@ -56,7 +56,7 @@ func main() {
  * Method for extracting the domain from an email address
  */
 func extractDomain(email string) string {
-	if index := strings.Index(email, "@"); index == 0 {
+	if index := strings.Index(email, "@"); index == -1 {
 		log.Fatal("Malformed email address")
 	}
 
