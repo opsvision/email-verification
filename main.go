@@ -9,6 +9,7 @@ import (
 	"net/smtp"
 	"os"
 	"strings"
+	"time"
 )
 
 var (
@@ -92,12 +93,18 @@ func checkEmail(server string, email string) {
 
 	fmt.Fprintf(&buffer, "%s:%d", server, 25)
 
-	// Connect
-	//log.Printf("Connecting to %s\n", server)
-	c, err := smtp.Dial(buffer.String())
+	// Dial the tcp connection (10 second timeout)
+	conn, err := net.DialTimeout("tcp", buffer.String(), 10*time.Second)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Connect to the SMTP server
+	c, err := smtp.NewClient(conn, server)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer c.Quit()
 
 	// Set the sender and recipient first
 	if err := c.Mail(sender); err != nil {
