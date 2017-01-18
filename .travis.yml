@@ -1,0 +1,17 @@
+sudo: false
+language: go
+go:
+  - 1.7
+before_install:
+  - go get github.com/Masterminds/glide
+env:
+  matrix:
+  - TEST_TYPE=small
+install:
+  - export TMPDIR=$HOME/tmp
+  - mkdir -p $TMPDIR
+  - glide install
+script:
+  - go test -tags=$TEST_TYPE $(glide novendor) -v
+notifications:
+  email: false
