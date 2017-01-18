@@ -27,5 +27,5 @@ jdoe@acme.com|INVALID
 Note that this utility can return false positives depending on how the remote server is configured. Use at your own risk.
 
 ## Acknowledgement
-Author: [@dishmael](https://github.com/dishmael)
-Company: [@opsvision](https://github.com/opsvision)
+* Author: [@dishmael](https://github.com/dishmael)
+* Company: [@opsvision](https://github.com/opsvision)
