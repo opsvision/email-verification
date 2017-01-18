@@ -48,11 +48,12 @@ func main() {
 		log.Fatalf("No MX records found for %s\n", domain)
 	}
 
+	// Perform the email check
 	checkEmail(records[0], email)
 }
 
 /**
- *
+ * Method for extracting the domain from an email address
  */
 func extractDomain(email string) string {
 	if index := strings.Index(email, "@"); index == 0 {
@@ -63,7 +64,7 @@ func extractDomain(email string) string {
 }
 
 /**
- *
+ * Method for fetching the MX record(s)
  */
 func getMXRecords(domain string) []string {
 	var records []string
@@ -84,7 +85,7 @@ func getMXRecords(domain string) []string {
 }
 
 /**
- *
+ * Method to check for a valid email address
  */
 func checkEmail(server string, email string) {
 	var buffer bytes.Buffer
